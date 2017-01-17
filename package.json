@@ -1,0 +1,9 @@
+{
+  "name": "screenshot-web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "nw": "^0.19.5"
+  }
+}

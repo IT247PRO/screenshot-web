@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <script >
+      let gui = require('nw.gui');
+      let win = gui.Window.get();
+      win.showDevTools();
+      function takeSnapshot() {
+          console.log("Loading popup...");
+          gui.Window.open('popup.html', {}, function(popWindow) {
+            popWindow.setMaximumSize(300, 120);
+            popWindow.on('loaded', function() {
+              popWindow.capturePage(function(base64string){
+                require("fs").writeFile("out.png", base64string, {encoding: 'base64'}, function(err){
+                  console.log("Screenshot done..");
+                });              
+              }, { format : 'png', datatype : 'raw'} );
+            });
+          });
+      }
+    </script>
+    <button onclick="takeSnapshot()">Open popup in 300x200 window and Take snapshot of popup window</button> 
+  </body>
+</html>
